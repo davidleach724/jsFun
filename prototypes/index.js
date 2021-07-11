@@ -15,59 +15,39 @@ const { constellations, stars } = require('./datasets/astronomy');
 const { weapons, characters } = require('./datasets/ultima');
 const { dinosaurs, humans, movies } = require('./datasets/dinosaurs');
 
-
-
-
-
-
 // SINGLE DATASETS
 // =================================================================
 
 // DATASET: kitties from ./datasets/kitties
 const kittyPrompts = {
   orangeKittyNames() {
-    const result = kitties.filter(kitty => kitty.color === 'orange').map(kitty => kitty.name)
+    const result = kitties
+      .filter((kitty) => kitty.color === 'orange')
+      .map((kitty) => kitty.name);
+    console.log(result);
     return result;
   },
 
   sortByAge() {
-   
+    const result = kitties.sort((a, b) => b.age - a.age);
+    console.log(result);
+    return result;
   },
 
   growUp() {
-    // Return an array of kitties who have all grown up by 2 years e.g.
-    // [{
-    //   name: 'Felicia',
-    //   age: 4,
-    //   color: 'grey'
-    // },
-    // {
-    //   name: 'Tiger',
-    //   age: 7,
-    //   color: 'orange'
-    // },
-    // ...etc]
-
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = kitties
+      .sort((a, b) => b.age - a.age)
+      .filter((kitties) => (kitties.age += 2));
+    console.log(result);
     return result;
-  }
+  },
 };
 
-
-
-
-
-
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
-
-
-
-
-
 
 // DATASET: clubs from ./datasets/clubs
 const clubPrompts = {
@@ -85,24 +65,14 @@ const clubPrompts = {
 
     // Annotation:
     // Write your annotation here as a comment
-  }
+  },
 };
 
-
-
-
-
-
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
-
-
-
-
-
 
 // DATASET: mods from ./datasets/mods
 const modPrompts = {
@@ -121,24 +91,14 @@ const modPrompts = {
 
     // Annotation:
     // Write your annotation here as a comment
-  }
+  },
 };
 
-
-
-
-
-
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
-
-
-
-
-
 
 // DATASET: cakes from ./datasets/cakes
 const cakePrompts = {
@@ -225,24 +185,14 @@ const cakePrompts = {
 
     // Annotation:
     // Write your annotation here as a comment
-  }
+  },
 };
 
-
-
-
-
-
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
-
-
-
-
-
 
 // DATASET: classrooms from ./datasets/classrooms
 const classPrompts = {
@@ -285,7 +235,7 @@ const classPrompts = {
 
     // Annotation:
     // Write your annotation here as a comment
-  }
+  },
 };
 
 // ---------------------------------------------------------------------------
@@ -306,13 +256,11 @@ const bookPrompts = {
     //   'The Curious Incident of the Dog in the Night - Time', 'The Bell Jar',
     //   'Catch-22', 'Treasure Island']
 
-
     const result = 'REPLACE WITH YOUR RESULT HERE';
     return result;
 
     // Annotation:
     // Write your annotation here as a comment
-
   },
   getNewBooks() {
     // return an array of objects containing all books that were
@@ -327,10 +275,8 @@ const bookPrompts = {
 
     // Annotation:
     // Write your annotation here as a comment
-  }
-
+  },
 };
-
 
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
@@ -380,8 +326,7 @@ const weatherPrompts = {
 
     // Annotation:
     // Write your annotation here as a comment
-
-  }
+  },
 };
 
 // ---------------------------------------------------------------------------
@@ -389,7 +334,6 @@ const weatherPrompts = {
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
-
 
 // DATASET: nationalParks from ./datasets/nationalParks
 
@@ -417,7 +361,6 @@ const nationalParksPrompts = {
     // { Maine: 'Acadia' },
     // { Utah: 'Zion' },
     // { Florida: 'Everglades' } ]
-
 
     const result = 'REPLACE WITH YOUR RESULT HERE';
     return result;
@@ -447,21 +390,14 @@ const nationalParksPrompts = {
 
     // Annotation:
     // Write your annotation here as a comment
-  }
+  },
 };
 
-
-
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
-
-
-
-
-
 
 // DATASET: breweries from ./datasets/breweries
 const breweryPrompts = {
@@ -502,35 +438,20 @@ const breweryPrompts = {
 
     // Annotation:
     // Write your annotation here as a comment
-  }
+  },
 };
 
-
-
-
-
-
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 
-
-
-
-
-
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
-
-
-
-
-
 
 // DOUBLE DATASETS
 // =================================================================
@@ -603,24 +524,14 @@ const turingPrompts = {
 
     // Annotation:
     // Write your annotation here as a comment
-  }
+  },
 };
 
-
-
-
-
-
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
-
-
-
-
-
 
 // DATASET: bosses, sidekicks from ./datasets/bosses
 const bossPrompts = {
@@ -638,24 +549,14 @@ const bossPrompts = {
 
     // Annotation:
     // Write your annotation here as a comment
-  }
+  },
 };
 
-
-
-
-
-
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
-
-
-
-
-
 
 // DATASET: constellations, stars } from ./datasets/astronomy
 const astronomyPrompts = {
@@ -714,35 +615,23 @@ const astronomyPrompts = {
     //    "Orion",
     //    "The Little Dipper" ]
 
-
     const result = 'REPLACE WITH YOUR RESULT HERE';
     return result;
 
     // Annotation:
     // Write your annotation here as a comment
-  }
+  },
 };
 
-
-
-
-
-
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
-
-
-
-
-
 
 // DATASET: charaters, weapons from ./datasets/ultima
 const ultimaPrompts = {
   totalDamage() {
-
     // Return the sum of the amount of damage for all the weapons that our characters can use
     // Answer => 113
 
@@ -754,7 +643,6 @@ const ultimaPrompts = {
   },
 
   charactersByTotal() {
-
     // Return the sum damage and total range for each character as an object.
     // ex: [ { Avatar: { damage: 27, range: 24 }, { Iolo: {...}, ...}
 
@@ -766,21 +654,11 @@ const ultimaPrompts = {
   },
 };
 
-
-
-
-
-
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
-
-
-
-
-
 
 // DATASET: dinosaurs, humans, movies from ./datasets/dinosaurs
 const dinosaurPrompts = {
@@ -889,7 +767,7 @@ const dinosaurPrompts = {
 
     // Annotation:
     // Write your annotation here as a comment
-  }
+  },
 };
 
 module.exports = {
@@ -906,5 +784,5 @@ module.exports = {
   nationalParksPrompts,
   weatherPrompts,
   bookPrompts,
-  dinosaurPrompts
+  dinosaurPrompts,
 };
