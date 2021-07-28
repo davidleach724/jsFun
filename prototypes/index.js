@@ -59,9 +59,8 @@ const clubPrompts = {
     //   Pam: ['Drama', 'Art', 'Chess'],
     //   ...etc
     // }
-
-    const result = 'REPLACE WITH YOUR RESULT HERE';
-    return result;
+    //console.log(clubs);
+    
 
     // Annotation:
     // Write your annotation here as a comment
@@ -111,11 +110,20 @@ const cakePrompts = {
     //    ..etc
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
-    return result;
+   const result = cakes.map(cake => {
+     return {
+       flavor: cake.cakeFlavor,
+       inStock: cake.inStock
+     }
+   })
+
+   return result;
+   
+
 
     // Annotation:
     // Write your annotation here as a comment
+
   },
 
   onlyInStock() {
@@ -139,7 +147,7 @@ const cakePrompts = {
     // ..etc
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.filter(cake => cake.inStock)
     return result;
 
     // Annotation:
@@ -150,7 +158,11 @@ const cakePrompts = {
     // Return the total amount of cakes in stock e.g.
     // 59
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.reduce((acc, cake) => {
+      acc += cake.inStock;
+      return acc;
+    }, 0)
+
     return result;
 
     // Annotation:
@@ -162,9 +174,28 @@ const cakePrompts = {
     // every cake in the dataset e.g.
     // ['dutch process cocoa', 'toasted sugar', 'smoked sea salt', 'berries', ..etc]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
-    return result;
+  //  let cakeArray = []
 
+  //  const result = cakes.forEach(cake => {
+  //    cake.toppings.forEach(topping => {
+  //      if(!cakeArray.includes(topping)) {
+  //        cakeArray.push(topping);
+  //      }
+  //    })
+  //  })
+
+  //  return cakeArray;
+   
+  const result = cakes.reduce((arr, cake) => {
+    cake.toppings.forEach(topping => {
+      if (!arr.includes(topping)) {
+        arr.push(topping)
+      }
+    })
+    return arr
+  }, [])
+
+  return result
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -180,8 +211,17 @@ const cakePrompts = {
     //    ...etc
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
-    return result;
+    const result = cakes.reduce((obj, cake) => {
+      cake.toppings.forEach(topping => {
+        if (!obj[topping]) {
+          obj[topping] = 0;
+        }
+        obj[topping]++
+      })
+      return obj
+    }, {})
+    
+    return result
 
     // Annotation:
     // Write your annotation here as a comment
@@ -205,7 +245,7 @@ const classPrompts = {
     //   { roomLetter: 'G', program: 'FE', capacity: 29 }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = classrooms.filter(classroom => classroom.program === 'FE')
     return result;
 
     // Annotation:
@@ -220,7 +260,16 @@ const classPrompts = {
     //   beCapacity: 96
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = classrooms.reduce((obj, classroom) => {
+      if (classroom.program === 'FE') {
+       obj.feCapacity += classroom.capacity
+      }
+      if (classroom.program === 'BE') {
+        obj.beCapacity+= classroom.capacity
+      }
+      
+      return obj;
+    }, {feCapacity: 0, beCapacity: 0})
     return result;
 
     // Annotation:
@@ -230,7 +279,7 @@ const classPrompts = {
   sortByCapacity() {
     // Return the array of classrooms sorted by their capacity (least capacity to greatest)
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = classrooms.sort((a, b) => a.capacity - b.capacity);
     return result;
 
     // Annotation:
@@ -256,7 +305,8 @@ const bookPrompts = {
     //   'The Curious Incident of the Dog in the Night - Time', 'The Bell Jar',
     //   'Catch-22', 'Treasure Island']
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = books.filter(book => book.genre != 'Horror' && book.genre != 'True Crime')
+    .map(book => book.title)
     return result;
 
     // Annotation:
@@ -270,7 +320,12 @@ const bookPrompts = {
     //  { title: 'Life of Pi', year: 2001 },
     //  { title: 'The Curious Incident of the Dog in the Night-Time', year: 2003 }]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = books.filter(book => book.published > 1990).map(book => {
+      return {
+        title: book.title,
+        year: book.published
+      }
+    })
     return result;
 
     // Annotation:
@@ -291,7 +346,9 @@ const weatherPrompts = {
     // return an array of all the average temperatures. Eg:
     // [ 40, 40, 44.5, 43.5, 57, 35, 65.5, 62, 14, 46.5 ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = weather.map(temps => {
+      return (temps.temperature.high+temps.temperature.low)/2
+    })
     return result;
 
     // Annotation:
@@ -305,7 +362,8 @@ const weatherPrompts = {
     // 'New Orleans, Louisiana is sunny.',
     // 'Raleigh, North Carolina is mostly sunny.' ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = weather.filter(spots => spots.type.includes('sunny')).map(spot => 
+      `${spot.location} is ${spot.type}.`)
     return result;
 
     // Annotation:
@@ -321,7 +379,7 @@ const weatherPrompts = {
     //   temperature: { high: 49, low: 38 }
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = weather.sort((a, b) => b.humidity - a.humidity)[0]
     return result;
 
     // Annotation:
@@ -346,7 +404,18 @@ const nationalParksPrompts = {
     //   parksVisited: ["Rocky Mountain", "Acadia", "Zion"]
     //}
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = nationalParks.reduce((obj, park) => {
+      if(!obj['parksToVisit'] || !obj['parksVisited']) {
+        obj['parksToVisit'] = [];
+        obj['parksVisited'] = [];
+      }
+      if (!park.visited) {
+        obj.parksToVisit.push(park.name)
+      } else {
+        obj.parksVisited.push(park.name)
+      }
+      return obj
+    }, {})
     return result;
 
     // Annotation:
@@ -362,7 +431,11 @@ const nationalParksPrompts = {
     // { Utah: 'Zion' },
     // { Florida: 'Everglades' } ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = nationalParks.map(park => {
+      return {
+        [park.location]: park.name
+      }
+    })
     return result;
 
     // Annotation:
@@ -385,7 +458,14 @@ const nationalParksPrompts = {
     //   'backpacking',
     //   'rock climbing' ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = nationalParks.reduce((arr, park) => {
+      park.activities.forEach(activity => {
+        if (!arr.includes(activity)) {
+          arr.push(activity);
+        }
+      })
+      return arr;
+    }, [])
     return result;
 
     // Annotation:
